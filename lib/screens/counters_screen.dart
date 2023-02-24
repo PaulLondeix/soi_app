@@ -4,7 +4,7 @@ import '../models/game.dart';
 class CountersScreen extends StatelessWidget {
   static const routeName = '/counters';
 
-  CountersScreen();
+  const CountersScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

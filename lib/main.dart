@@ -45,7 +45,9 @@ class MyApp extends StatelessWidget {
         home: HomeScreen(),
         routes: {
           PlayerNbScreen.routeName: (ctx) => const PlayerNbScreen(),
-          CountersScreen.routeName: (ctx) => CountersScreen(),
+          CharacterSelectionScreen.routeName: (ctx) =>
+              const CharacterSelectionScreen(),
+          CountersScreen.routeName: (ctx) => const CountersScreen(),
         });
   }
 }

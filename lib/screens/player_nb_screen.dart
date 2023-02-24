@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:soi_app/screens/character_selection_screen.dart';
 import './counters_screen.dart';
 import '../models/game.dart';
 import '../models/player.dart';
@@ -72,18 +73,9 @@ class PlayerButton extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  void createAndNavigateGame(BuildContext context, int playerNb) {
-    List<Player> players = [];
-
-    for (int i = 0; i < playerNb; i++) {
-      players.add(Player(character: Character.decima));
-    }
-
-    Navigator.pushNamed(
-      context,
-      CountersScreen.routeName,
-      arguments: Game(players: players),
-    );
+  void navigateToCharacterSelection(BuildContext context, int nbPlayer) {
+    Navigator.pushNamed(context, CharacterSelectionScreen.routeName,
+        arguments: nbPlayer);
   }
 
   @override
@@ -92,7 +84,7 @@ class PlayerButton extends StatelessWidget {
       width: 200,
       child: ElevatedButton(
         onPressed: () {
-          createAndNavigateGame(context, playerNb);
+          navigateToCharacterSelection(context, playerNb);
         },
         style: ElevatedButton.styleFrom(
           padding: const EdgeInsets.symmetric(
