@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
     TextTheme futoTextTheme = TextTheme(
       headline1: headlineTextStyle,
       headline2: headlineTextStyle.copyWith(fontSize: 18),
+      headline6: headlineTextStyle.copyWith(fontSize: 18),
       bodyText1: bodyTextStyle,
       bodyText2: bodyTextStyle.copyWith(fontSize: 14),
       button: bodyTextStyle,

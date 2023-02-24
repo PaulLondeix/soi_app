@@ -40,7 +40,7 @@ class _CharacterSelectionScreenState extends State<CharacterSelectionScreen> {
   }
 
   void createGameAndNavigate() {
-    Navigator.pushNamed(
+    Navigator.pushReplacementNamed(
       context,
       CountersScreen.routeName,
       arguments: Game(players: players),
@@ -52,7 +52,7 @@ class _CharacterSelectionScreenState extends State<CharacterSelectionScreen> {
     playerNb = ModalRoute.of(context)!.settings.arguments as int;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sélection d\'images'),
+        title: Text('Sélectionnez votre personnage'),
       ),
       body: Center(
         child: CarouselSlider(
@@ -77,23 +77,12 @@ class _CharacterSelectionScreenState extends State<CharacterSelectionScreen> {
         ),
       ),
       bottomNavigationBar: BottomAppBar(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            ElevatedButton(
-              onPressed: () {
-                selectCharacter(_currentIndex);
-                // Navigator.pop(context, characters[_currentIndex]);
-              },
-              child: Text('Sélectionner'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              child: Text('Annuler'),
-            ),
-          ],
+        child: ElevatedButton(
+          onPressed: () {
+            selectCharacter(_currentIndex);
+            // Navigator.pop(context, characters[_currentIndex]);
+          },
+          child: Text('Sélectionner'),
         ),
       ),
     );
