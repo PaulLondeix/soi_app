@@ -32,6 +32,10 @@ class _CharacterSelectionScreenState extends State<CharacterSelectionScreen> {
     players.add(Player(character: characters[currentIndex]));
     if (players.length >= playerNb) {
       createGameAndNavigate();
+    } else {
+      setState(() {
+        characters.remove(characters[currentIndex]);
+      });
     }
   }
 
