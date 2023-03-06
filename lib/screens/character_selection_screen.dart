@@ -52,38 +52,69 @@ class _CharacterSelectionScreenState extends State<CharacterSelectionScreen> {
     playerNb = ModalRoute.of(context)!.settings.arguments as int;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sélectionnez votre personnage'),
+        title: const Text('Sélectionnez votre personnage'),
       ),
-      body: Center(
-        child: CarouselSlider(
-          items: characters.map((character) {
-            return Container(
-              child: Image.asset(
-                character.imagePath,
-                fit: BoxFit.cover,
-              ),
-            );
-          }).toList(),
-          options: CarouselOptions(
-            height: MediaQuery.of(context).size.height * 0.6,
-            initialPage: _currentIndex,
-            enableInfiniteScroll: false,
-            onPageChanged: (index, reason) {
-              setState(() {
-                _currentIndex = index;
-              });
-            },
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            "assets/images/stars_background.gif",
+            fit: BoxFit.cover,
           ),
-        ),
-      ),
-      bottomNavigationBar: BottomAppBar(
-        child: ElevatedButton(
-          onPressed: () {
-            selectCharacter(_currentIndex);
-            // Navigator.pop(context, characters[_currentIndex]);
-          },
-          child: Text('Sélectionner'),
-        ),
+          Column(
+            children: [
+              Center(
+                child: CarouselSlider(
+                  items: characters.map((character) {
+                    return Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 10),
+                          child: Text(
+                            character.name,
+                            style: TextStyle(
+                                fontSize: 24,
+                                color: Theme.of(context).colorScheme.onPrimary),
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.symmetric(horizontal: 5),
+                          child: Image.asset(
+                            character.imagePath,
+                            fit: BoxFit.cover,
+                            height: MediaQuery.of(context).size.height * 0.7,
+                          ),
+                        ),
+                      ],
+                    );
+                  }).toList(),
+                  options: CarouselOptions(
+                    height: MediaQuery.of(context).size.height * 0.8,
+                    initialPage: _currentIndex,
+                    enableInfiniteScroll: false,
+                    onPageChanged: (index, reason) {
+                      setState(() {
+                        _currentIndex = index;
+                      });
+                    },
+                  ),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  selectCharacter(_currentIndex);
+                },
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    'Sélectionner',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
